@@ -2,11 +2,11 @@ import Navbar from "./components/common/Navbar/Navbar.jsx";
 import './styles.css'
 
 
-const App = ({children}) => {
+const App = (x) => {
     return (
         <>
             <Navbar />
-            {children}
+            {x.children}
         </>
     );
 };
