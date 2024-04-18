@@ -5,12 +5,11 @@
   "type": "module",
   "homepage": "https://alexxsome.github.io/team-builder-pokemon/",
   "scripts": {
-    "dev": "vite",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "predeploy" : "npm run build",
+    "deploy" : "gh-pages -d dist",
+    "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview --port 8080",
-    "predeploy": "vite build",
-    "deploy": "gh-pages -d dist",
     "clean": "rimraf dist",
     "start": "vite"
   },
