@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://AlexxSome.github.io/team-builder-pokemon/",
+  "homepage": "https://alexxsome.github.io/team-builder-pokemon/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
