@@ -9,18 +9,22 @@ export const AppRouter = createBrowserRouter([
     {
         path: "/",
         element: <HomePage />,
+        errorElement: <Error404 />
     },
     {
         path: "/home",
         element: <HomePage />,
+        errorElement: <Error404 />
     },
     {
         path: "team-builder",
-        element: <TeamBuilderPage />
+        element: <TeamBuilderPage />,
+        errorElement: <Error404 />
     },
     {
         path: "double-team",
-        element: <DoubleTeam />
+        element: <DoubleTeam />,
+        errorElement: <Error404 />
     },
     {
         path: "single-team",
