@@ -16,3 +16,5 @@ export const pages = [
 export const settingMenu = [
     "Profile", "Account", "Logout"
 ]
+
+export const BASE_URL_POKEAPI = "https://pokeapi.co/api/v2/";
