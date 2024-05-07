@@ -11,9 +11,9 @@ export const getFirstGeneration = async () => {
     }
 };
 
-export const getDetailPokemon = async (id) => {
+export const getDetailPokemon = async (url) => {
     try {
-        const response = await axios.get(`${BASE_URL_POKEAPI}pokemon/${id}`);
+        const response = await axios.get(url);
         return response.data;
     } catch (error) {
         console.error('Error fetching todos:', error);

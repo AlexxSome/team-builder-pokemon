@@ -1,14 +1,17 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Button, Card, CardActions, CardContent, CardMedia, Paper, Typography} from "@mui/material";
 import pokemons from "../../../assets/img/primeragen.jpg"
 
 const PokeInfo = ({pokemon}) => {
+    useEffect(() => {
+
+    }, [pokemon]);
     return (
         <Paper elevation={6} sx={{mt:4}}>
             <Card sx={{ maxWidth: 345 }}>
                 <CardMedia
                     sx={{ height: 140 }}
-                    image={pokemons}
+                    image={pokemon.sprites.front_default}
                     title="Pokemons primera generacion"
                 />
                 <CardContent>

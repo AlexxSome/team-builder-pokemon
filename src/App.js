@@ -1,11 +1,11 @@
 import Navbar from "./components/common/navbar/Navbar";
 
 
-function App(props) {
+function App({children}) {
   return (
     <>
       <Navbar />
-      {props.children}
+      {children}
     </>
   );
 }

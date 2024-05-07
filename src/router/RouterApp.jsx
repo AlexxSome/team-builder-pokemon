@@ -8,8 +8,7 @@ import Detail from "../components/detail/Detail";
 const RouterApp = () => {
     return (
         <Routes>
-            <Route path="/" element={<Home />}>
-            </Route>
+            <Route path="/" element={<Home />} />
             <Route path="single-team" element={<SingleTeam />} />
             <Route path="double-team" element={<DoubleTeam />} />
             <Route path="detail" element={<Detail />} />

@@ -1,27 +1,60 @@
 import React, {useEffect, useMemo, useState} from 'react';
-import {Container, Grid, InputAdornment, TextField} from "@mui/material";
+import {Backdrop, CircularProgress, Container, Grid, InputAdornment, TextField} from "@mui/material";
 import {MdOutlineSearch} from "react-icons/md";
 import PokeInfo from "../common/pokeInfo/PokeInfo";
-import {getFirstGeneration} from "../../services/pokemonService";
+import {getDetailPokemon, getFirstGeneration} from "../../services/pokemonService";
+import {logDOM} from "@testing-library/react";
 
 const Home = () => {
     const [pokemonList, setPokemonList] = useState([]);
-
-    useMemo(() => {
-        const fetchData = async () => {
-            try {
-                const list = await getFirstGeneration();
-                setPokemonList(list.results);
-            } catch (error) {
-                console.error("Get List pokemon: ", error)
-            }
-        };
-        fetchData().then( );
-    }, []);
+    const [openBackdrop, setOpenBackdrop] = React.useState(false);
+    const [responseDetail, setResponseDetail] = useState([]);
 
     useEffect(() => {
-        console.log("Data: ",pokemonList)
+
     }, [pokemonList]);
+
+    useEffect(() => {
+        fetchData().finally(()=>{
+            handleClose();
+        })
+    }, []);
+
+    const fetchData = async () => {
+        handleOpen();
+        try {
+            await getFirstGeneration().then((data) => {
+                setPokemonList(data);
+                Promise.all(
+                    data.results.map(poke => fetch(poke.url).then(response => response.json()))
+                ).then((response)=>{
+                    console.log("LOGSSS", response)
+                    setResponseDetail(response);
+                });
+            });
+
+        } catch (error) {
+            console.error("Get List pokemon: ", error);
+        }
+    };
+
+    const fetchDetail = async ()=> {
+        try {
+            pokemonList.length > 0 && pokemonList.map(pokemon => getDetailPokemon(pokemon.url)
+                .then(data => responseDetail.push(data))
+                .catch(error => console.error('Error al realizar fetch:', error))
+            )
+        } catch (error) {
+            console.error("Get List pokemon: ", error);
+        }
+    }
+
+    const handleClose = () => {
+        setOpenBackdrop(false);
+    };
+    const handleOpen = () => {
+        setOpenBackdrop(true);
+    };
 
     return (
         <Container sx={{mt:2}}>
@@ -40,14 +73,21 @@ const Home = () => {
             />
 
             <Grid container spacing={2} >
-                {pokemonList?.map((pokemon, index)=>{
+                {responseDetail && responseDetail.map((pokemon, index)=>{
                     return (
-                        <Grid item key={index}>
+                        <Grid xs={12} sm={6} item key={index}>
                             <PokeInfo pokemon={pokemon}/>
                         </Grid>
                     )
                 })}
 
+                <Backdrop
+                    sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+                    open={openBackdrop}
+                    onClick={handleClose}
+                >
+                    <CircularProgress color="inherit" />
+                </Backdrop>
             </Grid>
         </Container>
     );
