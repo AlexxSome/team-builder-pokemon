@@ -23,7 +23,7 @@ const Home = () => {
             await getFirstGeneration().then((data) => {
                 setPokemonList(data);
                 Promise.all(
-                    data.results.map(poke => fetch(poke.url).then(response => response.json()))
+                    data.results.map(poke => getDetailPokemon(poke.url))
                 ).then((response)=>{
                     setResponseDetail(response);
                     handleClose();
@@ -34,17 +34,6 @@ const Home = () => {
             console.error("Get List pokemon: ", error);
         }
     };
-
-    const fetchDetail = async ()=> {
-        try {
-            pokemonList.length > 0 && pokemonList.map(pokemon => getDetailPokemon(pokemon.url)
-                .then(data => responseDetail.push(data))
-                .catch(error => console.error('Error al realizar fetch:', error))
-            )
-        } catch (error) {
-            console.error("Get List pokemon: ", error);
-        }
-    }
 
     const handleClose = () => {
         setOpenBackdrop(false);

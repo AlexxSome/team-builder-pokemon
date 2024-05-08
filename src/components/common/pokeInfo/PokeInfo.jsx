@@ -14,13 +14,24 @@ const PokeInfo = ({pokemon}) => {
                     title="Pokemones primera generacion"
                 />
                 <CardContent>
-                    <Typography gutterBottom variant="h5" component="div">
+                    <Typography gutterBottom variant="h6" component="div">
                         {pokemon.name.toUpperCase()}
                     </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                        Lizards are a widespread group of squamate reptiles, with over 6,000
-                        species, ranging across all continents except Antarctica
+                    <Typography variant="body2">
+                        <strong>Nº:</strong> {pokemon.id}
                     </Typography>
+                    {(pokemon.types.length < 2) && <Typography variant="body2" />}
+                    {pokemon.types.map(({type})=>{
+                        return (
+                            <Typography variant="body2">
+                                <strong>Type:</strong> {type.name.toUpperCase()}
+                            </Typography>)
+                    })}
+                    {(pokemon.types.length === 1) && (
+                        <Typography variant="body2" color="white">
+                            {pokemon.types[0].type.name}
+                        </Typography>
+                    )}
                 </CardContent>
                 <CardActions>
                     <Button size="small">Add Team</Button>
