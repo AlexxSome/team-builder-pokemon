@@ -30,8 +30,10 @@ const Navbar = () => {
             <Container maxWidth="false">
                 <Toolbar disableGutters sx={{display: 'flex', justifyContent: 'space-between'}}>
 
-                    <Box sx={{flexGrow: 1, display: {xs: 'none', md: 'flex'}, mr: 1}}>
-                        <img style={{maxWidth: "100%", height: 50}} src={logo} alt="logo"/>
+                    <Box sx={{flexGrow: 1, display: {xs: 'none', md: 'flex'}, mr: 1}} >
+                        <NavLink to="/">
+                            <img style={{maxWidth: "100%", height: 50}} src={logo} alt="logo"/>
+                        </NavLink>
                     </Box>
 
                     <Box sx={{flexGrow: 1, display: {xs: 'none', md: 'flex'}}}>

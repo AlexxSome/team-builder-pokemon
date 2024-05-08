@@ -20,3 +20,12 @@ export const getDetailPokemon = async (url) => {
         throw error;
     }
 };
+export const getCharacteristicPokemon = async (id) => {
+    try {
+        const response = await axios.get(`${BASE_URL_POKEAPI}characteristic/${id}/`);
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching todos:', error);
+        throw error;
+    }
+};

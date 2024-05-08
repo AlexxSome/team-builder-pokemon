@@ -3,7 +3,6 @@ import {Backdrop, CircularProgress, Container, Grid, InputAdornment, TextField} 
 import {MdOutlineSearch} from "react-icons/md";
 import PokeInfo from "../common/pokeInfo/PokeInfo";
 import {getDetailPokemon, getFirstGeneration} from "../../services/pokemonService";
-import {logDOM} from "@testing-library/react";
 
 const Home = () => {
     const [pokemonList, setPokemonList] = useState([]);
@@ -15,9 +14,7 @@ const Home = () => {
     }, [pokemonList]);
 
     useEffect(() => {
-        fetchData().finally(()=>{
-            handleClose();
-        })
+        fetchData()
     }, []);
 
     const fetchData = async () => {
@@ -28,8 +25,8 @@ const Home = () => {
                 Promise.all(
                     data.results.map(poke => fetch(poke.url).then(response => response.json()))
                 ).then((response)=>{
-                    console.log("LOGSSS", response)
                     setResponseDetail(response);
+                    handleClose();
                 });
             });
 
@@ -75,7 +72,7 @@ const Home = () => {
             <Grid container spacing={2} >
                 {responseDetail && responseDetail.map((pokemon, index)=>{
                     return (
-                        <Grid xs={12} sm={6} item key={index}>
+                        <Grid xs={12} sm={6} md={3} item key={index}>
                             <PokeInfo pokemon={pokemon}/>
                         </Grid>
                     )
