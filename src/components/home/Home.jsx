@@ -3,11 +3,19 @@ import {Backdrop, CircularProgress, Container, Grid, InputAdornment, TextField} 
 import {MdOutlineSearch} from "react-icons/md";
 import PokeInfo from "../common/pokeInfo/PokeInfo";
 import {getDetailPokemon, getFirstGeneration} from "../../services/pokemonService";
+import DetailModal from "../common/pokeInfo/DetailModal";
 
 const Home = () => {
     const [pokemonList, setPokemonList] = useState([]);
+    const [pokemonSelected, setPokemonSelected] = useState({});
     const [openBackdrop, setOpenBackdrop] = React.useState(false);
     const [responseDetail, setResponseDetail] = useState([]);
+    const [openModal, setOpenModal] = useState(false);
+    const handleOpenModal = (poke) => {
+        setPokemonSelected(poke)
+        setOpenModal(true);
+    };
+    const handleOpenCloseModal = () => setOpenModal(!openModal);
 
     useEffect(() => {
 
@@ -58,11 +66,13 @@ const Home = () => {
                 }}
             />
 
+            <DetailModal pokemon={pokemonSelected} open={openModal} handleOpenCloseModal={handleOpenCloseModal}/>
+
             <Grid container spacing={2} >
                 {responseDetail && responseDetail.map((pokemon, index)=>{
                     return (
                         <Grid xs={12} sm={6} md={3} item key={index}>
-                            <PokeInfo pokemon={pokemon}/>
+                            <PokeInfo pokemon={pokemon} handleOpenModal={handleOpenModal}/>
                         </Grid>
                     )
                 })}

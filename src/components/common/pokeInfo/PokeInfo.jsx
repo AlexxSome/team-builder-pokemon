@@ -1,12 +1,15 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Button, Card, CardActions, CardContent, CardMedia, Paper, Typography} from "@mui/material";
+import DetailModal from "./DetailModal";
 
-const PokeInfo = ({pokemon}) => {
+const PokeInfo = ({pokemon, handleOpenModal}) => {
+
     useEffect(() => {
 
     }, [pokemon]);
     return (
         <Paper elevation={6} sx={{mt:4, p:2, display: 'flex', justifyContent: 'center'}}>
+
             <Card sx={{ maxWidth: 345 }}>
                 <CardMedia
                     sx={{ height: 140 }}
@@ -35,7 +38,7 @@ const PokeInfo = ({pokemon}) => {
                 </CardContent>
                 <CardActions>
                     <Button size="small">Add Team</Button>
-                    <Button size="small">Learn More</Button>
+                    <Button size="small" onClick={()=> handleOpenModal(pokemon)}>Learn More</Button>
                 </CardActions>
             </Card>
         </Paper>
