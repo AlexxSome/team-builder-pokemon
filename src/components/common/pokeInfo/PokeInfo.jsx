@@ -13,26 +13,26 @@ const PokeInfo = ({pokemon, handleOpenModal}) => {
             <Card sx={{ maxWidth: 345 }}>
                 <CardMedia
                     sx={{ height: 140 }}
-                    image={pokemon.sprites.front_default}
+                    image={pokemon?.sprites?.front_default}
                     title="Pokemones primera generacion"
                 />
                 <CardContent>
                     <Typography gutterBottom variant="h6" component="div">
-                        {pokemon.name.toUpperCase()}
+                        {pokemon?.name?.toUpperCase()}
                     </Typography>
                     <Typography variant="body2">
-                        <strong>Nº:</strong> {pokemon.id}
+                        <strong>Nº:</strong> {pokemon?.id}
                     </Typography>
                     {(pokemon.types.length < 2) && <Typography variant="body2" />}
-                    {pokemon.types.map(({type})=>{
+                    {pokemon.types.map(({type, i})=>{
                         return (
-                            <Typography variant="body2">
-                                <strong>Type:</strong> {type.name.toUpperCase()}
+                            <Typography variant="body2" key={i}>
+                                <strong>Type:</strong> {type?.name.toUpperCase()}
                             </Typography>)
                     })}
                     {(pokemon.types.length === 1) && (
                         <Typography variant="body2" color="white">
-                            {pokemon.types[0].type.name}
+                            {pokemon.types[0]?.type?.name}
                         </Typography>
                     )}
                 </CardContent>

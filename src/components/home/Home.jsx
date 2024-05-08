@@ -1,4 +1,4 @@
-import React, {useEffect, useMemo, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Backdrop, CircularProgress, Container, Grid, InputAdornment, TextField} from "@mui/material";
 import {MdOutlineSearch} from "react-icons/md";
 import PokeInfo from "../common/pokeInfo/PokeInfo";
@@ -7,7 +7,7 @@ import DetailModal from "../common/pokeInfo/DetailModal";
 
 const Home = () => {
     const [pokemonList, setPokemonList] = useState([]);
-    const [pokemonSelected, setPokemonSelected] = useState({});
+    const [pokemonSelected, setPokemonSelected] = useState();
     const [openBackdrop, setOpenBackdrop] = React.useState(false);
     const [responseDetail, setResponseDetail] = useState([]);
     const [openModal, setOpenModal] = useState(false);
@@ -66,12 +66,12 @@ const Home = () => {
                 }}
             />
 
-            <DetailModal pokemon={pokemonSelected} open={openModal} handleOpenCloseModal={handleOpenCloseModal}/>
+            {pokemonSelected && <DetailModal pokemon={pokemonSelected} open={openModal} handleOpenCloseModal={handleOpenCloseModal}/>}
 
             <Grid container spacing={2} >
                 {responseDetail && responseDetail.map((pokemon, index)=>{
                     return (
-                        <Grid xs={12} sm={6} md={3} item key={index}>
+                        <Grid xs={12} sm={6} md={4} item key={index}>
                             <PokeInfo pokemon={pokemon} handleOpenModal={handleOpenModal}/>
                         </Grid>
                     )
