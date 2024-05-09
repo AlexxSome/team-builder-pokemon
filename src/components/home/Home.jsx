@@ -17,11 +17,10 @@ const Home = () => {
         setOpenModal(true);
     };
     useEffect(() => {
-        console.log(responseDetail)
     }, [pokemonList]);
 
     useEffect(() => {
-        fetchData()
+        fetchData().then(r => r)
     }, []);
 
     const fetchData = async () => {
@@ -77,9 +76,9 @@ const Home = () => {
             {pokemonSelected && <DetailModal pokemon={pokemonSelected} open={openModal} handleOpenCloseModal={handleOpenCloseModal}/>}
 
             <Grid container spacing={2} >
-                {responseDetail && responseDetail.map((pokemon, index)=>{
+                {responseDetail && responseDetail.map((pokemon, i)=>{
                     return (
-                        <Grid xs={12} sm={6} md={4} item key={index}>
+                        <Grid xs={12} sm={6} md={4} item key={i}>
                             <PokeInfo pokemon={pokemon} handleOpenModal={handleOpenModal}/>
                         </Grid>
                     )

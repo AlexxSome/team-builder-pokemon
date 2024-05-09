@@ -23,10 +23,9 @@ const PokeInfo = ({pokemon, handleOpenModal}) => {
                     <Typography variant="body2">
                         <strong>Nº:</strong> {pokemon?.id}
                     </Typography>
-                    {(pokemon.types.length < 2) && <Typography variant="body2" />}
-                    {pokemon.types.map(({type, i})=>{
+                    {pokemon.types.map(({type})=>{
                         return (
-                            <Typography variant="body2" key={i}>
+                            <Typography variant="body2" key={type.name}>
                                 <strong>Type:</strong> {type?.name.toUpperCase()}
                             </Typography>)
                     })}
