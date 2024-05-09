@@ -10,15 +10,14 @@ const Home = () => {
     const [pokemonSelected, setPokemonSelected] = useState();
     const [openBackdrop, setOpenBackdrop] = React.useState(false);
     const [responseDetail, setResponseDetail] = useState([]);
+    const [filterList, setFilterList] = useState([]);
     const [openModal, setOpenModal] = useState(false);
     const handleOpenModal = (poke) => {
         setPokemonSelected(poke)
         setOpenModal(true);
     };
-    const handleOpenCloseModal = () => setOpenModal(!openModal);
-
     useEffect(() => {
-
+        console.log(responseDetail)
     }, [pokemonList]);
 
     useEffect(() => {
@@ -34,6 +33,7 @@ const Home = () => {
                     data.results.map(poke => getDetailPokemon(poke.url))
                 ).then((response)=>{
                     setResponseDetail(response);
+                    setFilterList(response);
                     handleClose();
                 });
             });
@@ -42,6 +42,13 @@ const Home = () => {
             console.error("Get List pokemon: ", error);
         }
     };
+
+    const searchPokemon = (text)=> {
+        const filter = filterList.filter(item => item.name.toLowerCase().includes(text.target.value.toLowerCase()));
+        setResponseDetail(filter);
+    }
+
+    const handleOpenCloseModal = () => setOpenModal(!openModal);
 
     const handleClose = () => {
         setOpenBackdrop(false);
@@ -57,6 +64,7 @@ const Home = () => {
                 label="Search Pokemon"
                 variant="filled"
                 fullWidth
+                onKeyUp={searchPokemon}
                 InputProps={{
                     endAdornment: (
                         <InputAdornment position="start">
