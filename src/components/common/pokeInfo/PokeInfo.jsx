@@ -1,16 +1,16 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {Button, Card, CardActions, CardContent, CardMedia, Paper, Typography} from "@mui/material";
-import DetailModal from "./DetailModal";
 
 const PokeInfo = ({pokemon, handleOpenModal}) => {
 
     useEffect(() => {
 
     }, [pokemon]);
+
     return (
         <Paper elevation={6} sx={{mt:4, p:2, display: 'flex', justifyContent: 'center'}}>
 
-            <Card sx={{ maxWidth: 345 }}>
+            <Card sx={{ maxWidth: '100%', boxShadow: 'none' }}>
                 <CardMedia
                     sx={{ height: 140 }}
                     image={pokemon?.sprites?.front_default}
