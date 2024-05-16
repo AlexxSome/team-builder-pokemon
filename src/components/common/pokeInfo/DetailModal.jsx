@@ -73,7 +73,6 @@ const DetailModal = ({pokemon, open, handleOpenCloseModal}) => {
                         sx={{ height: 150 }}
                         image={pokemon?.sprites?.back_default}
                         title="Pokemones primera generacion"
-
                     />
                     </Card>
                 </Grid>
