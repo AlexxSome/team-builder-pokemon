@@ -30,13 +30,11 @@ const DetailModal = ({pokemon, open, handleOpenCloseModal}) => {
                     }
                 }
             }
-
             resolve(tempMoveList)
         })
     }
 
     useEffect(() => {
-        console.log("Ditto", pokemon)
         getPokemon().then((data)=>{
             setMoveList(data);
         });
@@ -50,10 +48,12 @@ const DetailModal = ({pokemon, open, handleOpenCloseModal}) => {
             aria-describedby="modal-modal-description"
         >
             <Grid container sx={style} spacing={2}>
-                <Grid item>
-                    <Typography id="modal-modal-title" variant="h6" component="h2">
+                <Grid item xs={12} sx={{textAlign: "center"}}>
+                    <Typography id="modal-modal-title" variant="h6" component="h2" fontWeight="bold">
                         {pokemon.name && pokemon?.name.toUpperCase()}
                     </Typography>
+                </Grid>
+                <Grid item>
                     <Typography variant="body2" sx={{ mt: 2 }}>
                         <strong>Height:</strong> {pokemon?.height}
                     </Typography>
