@@ -4,7 +4,6 @@ import {MdOutlineSearch} from "react-icons/md";
 import PokeInfo from "../common/pokeInfo/PokeInfo";
 import {getDetailPokemon, getFirstGeneration} from "../../services/pokemonService";
 import DetailModal from "../common/pokeInfo/DetailModal";
-import Drawer from "../common/drawer/Drawer";
 
 const Home = () => {
     const [pokemonList, setPokemonList] = useState([]);
