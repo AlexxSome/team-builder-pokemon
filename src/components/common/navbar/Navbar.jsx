@@ -5,9 +5,9 @@ import {pages, settingMenu} from "../../../utils/constants";
 import {NavLink} from "react-router-dom";
 import {MdMenu} from "react-icons/md";
 import "./styles.css"
+import TeamIcon from "../../home/TeamIcon";
 
-
-const Navbar = () => {
+const Navbar = ({setStateDrawer, stateDrawer}) => {
     const [anchorElNav, setAnchorElNav] = useState(null);
     const [anchorElUser, setAnchorElUser] = useState(null);
 
@@ -105,11 +105,8 @@ const Navbar = () => {
                     </Box>
 
                     <Box sx={{flexGrow: 0}}>
-                        <Tooltip title="Open settings">
-                            <IconButton onClick={handleOpenUserMenu} sx={{p: 0}}>
-                                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg"/>
-                            </IconButton>
-                        </Tooltip>
+                        <TeamIcon setStateDrawer={setStateDrawer} stateDrawer={stateDrawer}/>
+
                         <Menu
                             sx={{mt: '45px'}}
                             id="menu-appbar"

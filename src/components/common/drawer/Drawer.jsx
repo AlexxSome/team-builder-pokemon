@@ -1,37 +1,54 @@
-import React, {useState} from 'react';
-import {Avatar, Box, Divider, List, ListItem, ListItemButton, ListItemIcon, ListItemText} from "@mui/material";
-import teamImg from "../../../assets/img/primeragen.jpg"
+import React from 'react';
+import {
+    Avatar,
+    Box,
+    Button,
+    Divider,
+    Drawer,
+    List,
+    ListItem,
+    ListItemButton,
+    ListItemIcon,
+    ListItemText
+} from "@mui/material";
 
-const Drawer = ({team=["test"]}) => {
-    const [open, setOpen] = useState(true);
+import {CgPokemon} from "react-icons/cg";
 
-    const toggleDrawer = (newOpen) => () => {
-        setOpen(newOpen);
-    };
-    return (
-        <Drawer
-            anchor='right'
-            open={open}
-            onClose={toggleDrawer(false)}
-        >
-        <Box sx={{ width: 250 }} role="presentation" >
+const DrawerTeam = ({team = ["test"], setStateDrawer, stateDrawer}) => {
+
+    const handleCloseDrawer = ()=>{
+        console.log("CLICK")
+        setStateDrawer(!stateDrawer);
+    }
+
+    const DrawerList = (
+        <Box sx={{ width: 250 }} role="presentation" onClick={handleCloseDrawer}>
+            <Divider />
             <List>
-                {team.map((text, i) => (
-                    <ListItem key={i} disablePadding>
+                {['All mail', 'Trash', 'Spam'].map((text, index) => (
+                    <ListItem key={text} disablePadding>
                         <ListItemButton>
                             <ListItemIcon>
-                                <Avatar alt="Remy Sharp" src={teamImg} />
+                                {index % 2 === 0 ? <CgPokemon /> : <CgPokemon />}
                             </ListItemIcon>
                             <ListItemText primary={text} />
                         </ListItemButton>
-                        <Divider />
                     </ListItem>
                 ))}
             </List>
-
         </Box>
-        </Drawer>
+    );
+
+    return (
+
+        <div>
+            <Button onClick={handleCloseDrawer}>Open drawer</Button>
+            <Drawer open={stateDrawer} onClose={handleCloseDrawer} >
+                {DrawerList}
+            </Drawer>
+        </div>
+
     );
 };
 
-export default Drawer;
+export default DrawerTeam;

@@ -10,8 +10,8 @@ const SingleTeam = () => {
 
         const singleTeamList = collection(db, "single-team");
 
-        getDocs(singleTeamList).then((snapshot) => {
-            setTeamList(snapshot.docs.map((doc) => doc.data()))
+        getDocs(singleTeamList).then((data) => {
+            setTeamList(data.docs.map((doc) => doc.data()))
         })
     }, []);
 

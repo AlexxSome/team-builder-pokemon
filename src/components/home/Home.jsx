@@ -4,14 +4,16 @@ import {MdOutlineSearch} from "react-icons/md";
 import PokeInfo from "../common/pokeInfo/PokeInfo";
 import {getDetailPokemon, getFirstGeneration} from "../../services/pokemonService";
 import DetailModal from "../common/pokeInfo/DetailModal";
+import DrawerTeam from "../common/drawer/Drawer";
 
-const Home = () => {
+const Home = ({stateDrawer, setStateDrawer}) => {
     const [pokemonList, setPokemonList] = useState([]);
     const [pokemonSelected, setPokemonSelected] = useState();
     const [openBackdrop, setOpenBackdrop] = React.useState(false);
     const [responseDetail, setResponseDetail] = useState([]);
     const [filterList, setFilterList] = useState([]);
     const [openModal, setOpenModal] = useState(false);
+
     const handleOpenModal = (poke) => {
         setPokemonSelected(poke)
         setOpenModal(true);
@@ -58,6 +60,7 @@ const Home = () => {
 
     return (
         <Container sx={{mt:2}}>
+
             <TextField
                 id="filled-basic"
                 label="Search Pokemon"
