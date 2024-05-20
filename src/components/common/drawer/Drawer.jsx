@@ -42,8 +42,7 @@ const DrawerTeam = ({team = ["test"], setStateDrawer, stateDrawer}) => {
     return (
 
         <div>
-            <Button onClick={handleCloseDrawer}>Open drawer</Button>
-            <Drawer open={stateDrawer} onClose={handleCloseDrawer} >
+            <Drawer anchor='right' open={stateDrawer} onClose={handleCloseDrawer} >
                 {DrawerList}
             </Drawer>
         </div>
