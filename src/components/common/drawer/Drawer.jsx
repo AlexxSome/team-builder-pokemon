@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {
     Avatar,
     Box,
@@ -6,36 +6,77 @@ import {
     Divider,
     Drawer,
     List,
-    ListItem,
+    ListItem, ListItemAvatar,
     ListItemButton,
     ListItemIcon,
-    ListItemText
+    ListItemText, Typography
 } from "@mui/material";
 
 import {CgPokemon} from "react-icons/cg";
+import {AppContext} from "../../../context/ContextProvider";
+import {collection, getDocs, getFirestore} from "firebase/firestore";
 
-const DrawerTeam = ({team = ["test"], setStateDrawer, stateDrawer}) => {
+const DrawerTeam = ({setStateDrawer, stateDrawer}) => {
+
+    const {updateTeamCart, state} = useContext(AppContext);
+
+    const [teamCart, setTeamCart] = useState([]);
+
+    useEffect(() => {
+        setTeamCart(state.teamCart)
+    }, [teamCart, state]);
+
+    useEffect(() => {
+        const db = getFirestore();
+        const teamCartList = collection(db, "team-cart");
+
+        getDocs(teamCartList).then((data) => {
+            updateTeamCart( data.docs.map((doc) => doc.data()))
+        })
+    }, []);
+
 
     const handleCloseDrawer = ()=>{
-        console.log("CLICK")
         setStateDrawer(!stateDrawer);
     }
 
     const DrawerList = (
         <Box sx={{ width: 250 }} role="presentation" onClick={handleCloseDrawer}>
-            <Divider />
             <List>
-                {['All mail', 'Trash', 'Spam'].map((text, index) => (
-                    <ListItem key={text} disablePadding>
+                {teamCart.map((poke) => (
+                    <ListItem key={poke.id} >
+                        <ListItemAvatar>
+                            <Avatar alt="image pokemon" src={poke.imgUrl} />
+                        </ListItemAvatar>
                         <ListItemButton>
-                            <ListItemIcon>
-                                {index % 2 === 0 ? <CgPokemon /> : <CgPokemon />}
-                            </ListItemIcon>
-                            <ListItemText primary={text} />
+                            <ListItemText primary={poke.name.toUpperCase()} />
                         </ListItemButton>
+                        <Divider />
                     </ListItem>
+
                 ))}
             </List>
+            <Divider />
+            <List disablePadding>
+
+                <ListItem disablePadding>
+                    <ListItemButton>
+                        <Button color="success" variant="outlined" fullWidth>Save Single Team</Button>
+                    </ListItemButton>
+                </ListItem>
+                <ListItem disablePadding>
+                    <ListItemButton>
+                        <Button color="success" variant="outlined" fullWidth>Save Double Team</Button>
+                    </ListItemButton>
+                </ListItem>
+                <ListItem disablePadding>
+                    <ListItemButton>
+                        <Button color="warning" variant="outlined" fullWidth>Clear List</Button>
+                    </ListItemButton>
+                </ListItem>
+            </List>
+
+
         </Box>
     );
 

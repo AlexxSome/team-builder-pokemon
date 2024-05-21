@@ -6,7 +6,6 @@ import DrawerTeam from "./components/common/drawer/Drawer";
 function App({children}) {
     const [stateDrawer, setStateDrawer] = useState(false);
 
-
   return (
     <>
       <Navbar stateDrawer={stateDrawer} setStateDrawer={setStateDrawer}/>
