@@ -7,6 +7,10 @@ const PokeInfo = ({pokemon, handleOpenModal}) => {
 
     }, [pokemon]);
 
+    const handleAddTeam = (poke)=> {
+        alert(JSON.stringify(poke))
+    }
+
     return (
         <Paper elevation={6} sx={{mt:4, p:2, display: 'flex', justifyContent: 'center'}}>
 
@@ -36,7 +40,7 @@ const PokeInfo = ({pokemon, handleOpenModal}) => {
                     )}
                 </CardContent>
                 <CardActions>
-                    <Button size="small">Add Team</Button>
+                    <Button size="small" onClick={()=>handleAddTeam(pokemon)}>Add Team</Button>
                     <Button size="small" onClick={()=> handleOpenModal(pokemon)}>Learn More</Button>
                 </CardActions>
             </Card>

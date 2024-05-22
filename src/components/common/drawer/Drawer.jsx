@@ -23,15 +23,14 @@ const DrawerTeam = ({setStateDrawer, stateDrawer}) => {
     const [teamCart, setTeamCart] = useState([]);
 
     useEffect(() => {
-        setTeamCart(state.teamCart)
-    }, [teamCart, state]);
+    }, [teamCart]);
 
     useEffect(() => {
         const db = getFirestore();
         const teamCartList = collection(db, "team-cart");
 
         getDocs(teamCartList).then((data) => {
-            updateTeamCart( data.docs.map((doc) => doc.data()))
+            setTeamCart( data.docs.map((doc) => doc.data()))
         })
     }, []);
 
@@ -40,8 +39,13 @@ const DrawerTeam = ({setStateDrawer, stateDrawer}) => {
         setStateDrawer(!stateDrawer);
     }
 
+    const handleClearList = ()=>{
+        updateTeamCart([]);
+        setTeamCart([]);
+    }
+
     const DrawerList = (
-        <Box sx={{ width: 250 }} role="presentation" onClick={handleCloseDrawer}>
+        <Box sx={{ width: 250 }} role="presentation">
             <List>
                 {teamCart.map((poke) => (
                     <ListItem key={poke.id} >
@@ -71,7 +75,7 @@ const DrawerTeam = ({setStateDrawer, stateDrawer}) => {
                 </ListItem>
                 <ListItem disablePadding>
                     <ListItemButton>
-                        <Button color="warning" variant="outlined" fullWidth>Clear List</Button>
+                        <Button color="warning" variant="outlined" fullWidth onClick={handleClearList}>Clear List</Button>
                     </ListItemButton>
                 </ListItem>
             </List>
