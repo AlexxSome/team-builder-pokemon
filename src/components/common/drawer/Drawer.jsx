@@ -8,11 +8,9 @@ import {
     List,
     ListItem, ListItemAvatar,
     ListItemButton,
-    ListItemIcon,
-    ListItemText, Typography
+    ListItemText
 } from "@mui/material";
 
-import {CgPokemon} from "react-icons/cg";
 import {AppContext} from "../../../context/ContextProvider";
 import {collection, getDocs, getFirestore} from "firebase/firestore";
 
