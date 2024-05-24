@@ -6,7 +6,7 @@ import {getDetailPokemon, getFirstGeneration} from "../../services/pokemonServic
 import DetailModal from "../common/pokeInfo/DetailModal";
 
 
-const Home = ({stateDrawer, setStateDrawer}) => {
+const Home = ({setStateDrawer}) => {
     const [pokemonList, setPokemonList] = useState([]);
     const [pokemonSelected, setPokemonSelected] = useState();
     const [openBackdrop, setOpenBackdrop] = React.useState(false);
@@ -81,7 +81,7 @@ const Home = ({stateDrawer, setStateDrawer}) => {
                 {responseDetail && responseDetail.map((pokemon, i)=>{
                     return (
                         <Grid xs={12} sm={6} md={4} item key={i}>
-                            <PokeInfo pokemon={pokemon} handleOpenModal={handleOpenModal}/>
+                            <PokeInfo pokemon={pokemon} handleOpenModal={handleOpenModal} setStateDrawer={setStateDrawer}/>
                         </Grid>
                     )
                 })}

@@ -1,10 +1,12 @@
 import React, {useContext, useEffect} from 'react';
 import {Button, Card, CardActions, CardContent, CardMedia, Paper, Typography} from "@mui/material";
 import {AppContext} from "../../../context/ContextProvider";
+import {useDrawer} from "../../../context/DrawerContext";
 
 const PokeInfo = ({pokemon, handleOpenModal}) => {
 
-    const {addItemToCart} = useContext(AppContext);
+    const {addItemToCart, state} = useContext(AppContext);
+    const { setStateDrawer } = useDrawer();
 
     useEffect(() => {
     }, [pokemon]);
@@ -16,7 +18,12 @@ const PokeInfo = ({pokemon, handleOpenModal}) => {
             name: pokemon.name,
             imgUrl: pokemon.sprites.front_default,
         }
-        addItemToCart(addingPokemon);
+
+        if(state.teamCart.length < 6) {
+            addItemToCart(addingPokemon);
+        }else{
+            setStateDrawer(prevState => !prevState)
+        }
     }
 
     return (
