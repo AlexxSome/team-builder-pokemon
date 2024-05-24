@@ -50,8 +50,17 @@ const ContextProvider = ({ children }) => {
         }));
     };
 
+    const addItemToCart = (teamCart) => {
+        let list = state.teamCart
+        list.push(teamCart);
+        setState((prevState) => ({
+            ...prevState,
+            teamCart: list,
+        }));
+    };
+
     return (
-        <AppContext.Provider value={{ state, updateTeamCart, updateSingleTeam, updateDoubleTeam }}>
+        <AppContext.Provider value={{ state, updateTeamCart, updateSingleTeam, updateDoubleTeam, addItemToCart }}>
             {children}
         </AppContext.Provider>
     );

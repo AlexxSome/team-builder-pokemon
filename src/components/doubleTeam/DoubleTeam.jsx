@@ -4,7 +4,7 @@ import {Typography} from "@mui/material";
 const MyComponent = () => {
     return (
         <>
-            <Typography variant="h1">
+            <Typography variant="h1" sx={{mt:12}}>
                 Double T
             </Typography>
         </>

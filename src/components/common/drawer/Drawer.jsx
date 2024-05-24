@@ -17,20 +17,23 @@ import {collection, getDocs, getFirestore} from "firebase/firestore";
 const DrawerTeam = ({setStateDrawer, stateDrawer}) => {
 
     const {updateTeamCart, state} = useContext(AppContext);
-
     const [teamCart, setTeamCart] = useState([]);
 
     useEffect(() => {
-    }, [teamCart]);
+        setTeamCart(state.teamCart)
+    }, [state]);
 
     useEffect(() => {
-        const db = getFirestore();
-        const teamCartList = collection(db, "team-cart");
+        // if(stateDrawer){
+        //     const db = getFirestore();
+        //     const teamCartList = collection(db, "team-cart");
+        //
+        //     getDocs(teamCartList).then((data) => {
+        //         setTeamCart( data.docs.map((doc) => doc.data()))
+        //     })
+        // }
 
-        getDocs(teamCartList).then((data) => {
-            setTeamCart( data.docs.map((doc) => doc.data()))
-        })
-    }, []);
+    }, [stateDrawer]);
 
 
     const handleCloseDrawer = ()=>{

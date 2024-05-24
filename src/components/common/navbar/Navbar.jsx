@@ -26,7 +26,7 @@ const Navbar = ({setStateDrawer, stateDrawer}) => {
         setAnchorElUser(null);
     };
     return (
-        <AppBar position="static" sx={{m:0}}>
+        <AppBar position="fixed" sx={{m:0}}>
             <Container maxWidth="false">
                 <Toolbar disableGutters sx={{display: 'flex', justifyContent: 'space-between'}}>
 

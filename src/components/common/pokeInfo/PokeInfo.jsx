@@ -1,14 +1,22 @@
-import React, {useEffect} from 'react';
+import React, {useContext, useEffect} from 'react';
 import {Button, Card, CardActions, CardContent, CardMedia, Paper, Typography} from "@mui/material";
+import {AppContext} from "../../../context/ContextProvider";
 
 const PokeInfo = ({pokemon, handleOpenModal}) => {
 
-    useEffect(() => {
+    const {addItemToCart} = useContext(AppContext);
 
+    useEffect(() => {
     }, [pokemon]);
 
-    const handleAddTeam = (poke)=> {
-        alert(JSON.stringify(poke))
+    const handleAddTeam = ()=> {
+        console.log("poke", pokemon)
+        const addingPokemon = {
+            id: pokemon.id,
+            name: pokemon.name,
+            imgUrl: pokemon.sprites.front_default,
+        }
+        addItemToCart(addingPokemon);
     }
 
     return (
@@ -41,7 +49,7 @@ const PokeInfo = ({pokemon, handleOpenModal}) => {
                 </CardContent>
                 <CardActions>
                     <Button size="small" onClick={()=>handleAddTeam(pokemon)}>Add Team</Button>
-                    <Button size="small" onClick={()=> handleOpenModal(pokemon)}>Learn More</Button>
+                    <Button size="small" onClick={handleOpenModal}>Learn More</Button>
                 </CardActions>
             </Card>
         </Paper>

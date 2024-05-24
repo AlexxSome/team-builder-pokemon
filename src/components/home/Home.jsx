@@ -4,7 +4,7 @@ import {MdOutlineSearch} from "react-icons/md";
 import PokeInfo from "../common/pokeInfo/PokeInfo";
 import {getDetailPokemon, getFirstGeneration} from "../../services/pokemonService";
 import DetailModal from "../common/pokeInfo/DetailModal";
-import DrawerTeam from "../common/drawer/Drawer";
+
 
 const Home = ({stateDrawer, setStateDrawer}) => {
     const [pokemonList, setPokemonList] = useState([]);
@@ -59,8 +59,7 @@ const Home = ({stateDrawer, setStateDrawer}) => {
     };
 
     return (
-        <Container sx={{mt:2}}>
-
+        <Container sx={{mt:12}}>
             <TextField
                 id="filled-basic"
                 label="Search Pokemon"

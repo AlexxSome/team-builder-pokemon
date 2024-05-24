@@ -14,7 +14,7 @@ const SingleTeam = () => {
 
 
     return (
-        <Container sx={{mt:2}}>
+        <Container sx={{mt:10}}>
             <Grid container spacing={1} sx={{display: 'flex', m: 4}}>
                 {singleTeam.map((pokemon, i) => {
                     return (
