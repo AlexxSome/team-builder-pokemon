@@ -1,16 +1,24 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {Card, CardContent, CardMedia, Container, Grid, Paper, Typography} from "@mui/material";
-import {AppContext, ContextProvider} from "../../context/ContextProvider";
+import {AppContext} from "../../context/ContextProvider";
+import soundFile from "../../assets/sounds/theme-opening.mp3";
+import useSound from 'use-sound';
 
 const SingleTeam = () => {
     const {state} = useContext(AppContext);
-
+    const [play, {stop}] = useSound(soundFile);
     const [singleTeam, setSingleTeam] = useState([]);
 
     useEffect(() => {
         setSingleTeam(state.singleTeam)
     }, [singleTeam]);
 
+    useEffect(() => {
+        play();
+        return()=>{
+            stop();
+        }
+    }, [play]);
 
 
     return (

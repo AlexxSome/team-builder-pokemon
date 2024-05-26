@@ -14,7 +14,7 @@ import {
 import {AppContext} from "../../../context/ContextProvider";
 import {collection, getDocs, getFirestore} from "firebase/firestore";
 
-const DrawerTeam = ({setStateDrawer, stateDrawer}) => {
+const DrawerTeam = ({setStateDrawer, stateDrawer, setOpenConfirmation}) => {
 
     const {updateTeamCart, state} = useContext(AppContext);
     const [teamCart, setTeamCart] = useState([]);
@@ -34,6 +34,11 @@ const DrawerTeam = ({setStateDrawer, stateDrawer}) => {
         // }
 
     }, [stateDrawer]);
+
+    const handleSaveSingle = () =>{
+        setOpenConfirmation(true);
+        setStateDrawer(!stateDrawer);
+    }
 
 
     const handleCloseDrawer = ()=>{
@@ -66,7 +71,7 @@ const DrawerTeam = ({setStateDrawer, stateDrawer}) => {
 
                 <ListItem disablePadding>
                     <ListItemButton>
-                        <Button color="success" variant="outlined" fullWidth>Save Single Team</Button>
+                        <Button onClick={handleSaveSingle} color="success" variant="outlined" fullWidth>Save Single Team</Button>
                     </ListItemButton>
                 </ListItem>
                 <ListItem disablePadding>
