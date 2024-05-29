@@ -10,10 +10,10 @@ const RouterApp = () => {
         <Routes>
             <Route path="/" element={<Home />} />
             <Route path="home" element={<Home />} />
+            <Route path="home/:id" element={<Detail />} />
             <Route path="team-builder-pokemon" element={<Home />} />
             <Route path="single-team" element={<SingleTeam />} />
             <Route path="double-team" element={<DoubleTeam />} />
-            <Route path="detail" element={<Detail />} />
         </Routes>
     );
 };

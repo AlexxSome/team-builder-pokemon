@@ -2,6 +2,7 @@ import React, {useContext, useEffect} from 'react';
 import {Button, Card, CardActions, CardContent, CardMedia, Paper, Typography} from "@mui/material";
 import {AppContext} from "../../../context/ContextProvider";
 import {useDrawer} from "../../../context/DrawerContext";
+import {NavLink} from "react-router-dom";
 
 const PokeInfo = ({pokemon, handleOpenModal}) => {
 
@@ -56,7 +57,7 @@ const PokeInfo = ({pokemon, handleOpenModal}) => {
                 </CardContent>
                 <CardActions>
                     <Button size="small" onClick={()=>handleAddTeam(pokemon)}>Add Team</Button>
-                    <Button size="small" onClick={handleOpenModal}>Learn More</Button>
+                    <NavLink to={`home/${pokemon.id}`}><Button size="small" onClick={handleOpenModal}>Learn More</Button></NavLink>
                 </CardActions>
             </Card>
         </Paper>
