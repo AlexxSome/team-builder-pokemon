@@ -11,7 +11,7 @@ const SingleTeam = () => {
 
     useEffect(() => {
         setSingleTeam(state.singleTeam)
-    }, [singleTeam]);
+    }, [singleTeam, state]);
 
     useEffect(() => {
         play();
@@ -24,11 +24,11 @@ const SingleTeam = () => {
     return (
         <Container sx={{mt:10}}>
             <Grid container spacing={1} sx={{display: 'flex', m: 4}}>
-                {singleTeam.map((pokemon, i) => {
+                {singleTeam && singleTeam.map((pokemon, i) => {
                     return (
                         <Grid xs={12} sm={6} md={4} item key={i}>
                             <Paper elevation={6} sx={{mt: 4, p: 2, display: 'flex', justifyContent: 'center'}}>
-                                <Card sx={{maxWidth: '100%', boxShadow: 'none'}} key={i}>
+                                <Card sx={{ width: 150, boxShadow: 'none' }}>
                                     <CardMedia
                                         sx={{height: 140}}
                                         image={pokemon?.imgUrl}
@@ -36,7 +36,10 @@ const SingleTeam = () => {
                                     />
                                     <CardContent>
                                         <Typography gutterBottom variant="h6" component="div">
-                                            {pokemon?.namePokemon?.toUpperCase()}
+                                            <stong>{pokemon?.name?.toUpperCase()}</stong>
+                                        </Typography>
+                                        <Typography gutterBottom variant="h6" component="div">
+                                            Team : {pokemon?.teamId?.toUpperCase()}
                                         </Typography>
                                     </CardContent>
                                 </Card>
